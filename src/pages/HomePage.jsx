@@ -1,0 +1,27 @@
+import About from '../components/About'
+import Contact from '../components/Contact'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import Projects from '../components/Projects'
+import Services from '../components/Services'
+import { profile, projects } from '../data/portfolio'
+
+export default function HomePage() {
+  return (
+    <div className="portfolio-home sav1n-experience">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <Header />
+      <main id="main-content">
+        <Hero profile={profile} />
+        <Services />
+        <Projects projects={projects} />
+        <About profile={profile} />
+        <Contact profile={profile} />
+      </main>
+      <Footer profile={profile} />
+    </div>
+  )
+}

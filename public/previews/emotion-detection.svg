@@ -1,0 +1,37 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="28" y1="22" x2="684" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161F3A"/>
+      <stop offset="1" stop-color="#242557"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(256 239) rotate(90) scale(139)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8FF36"/>
+      <stop offset="1" stop-color="#D8FF36" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="720" height="480" rx="24" fill="url(#bg)"/>
+  <path d="M45 71H675M45 119H675M45 167H675M45 215H675M45 263H675M45 311H675M45 359H675M45 407H675" stroke="#F9F7F0" stroke-opacity=".08"/>
+  <path d="M89 41V439M137 41V439M185 41V439M233 41V439M281 41V439M329 41V439M377 41V439M425 41V439M473 41V439M521 41V439M569 41V439M617 41V439" stroke="#F9F7F0" stroke-opacity=".08"/>
+  <circle cx="256" cy="241" r="142" fill="url(#glow)"/>
+  <rect x="85" y="87" width="342" height="306" rx="18" fill="#0B1020" fill-opacity=".75"/>
+  <rect x="109" y="111" width="294" height="258" rx="12" fill="#B7A4FF" fill-opacity=".19" stroke="#D8FF36" stroke-width="2"/>
+  <circle cx="256" cy="226" r="74" fill="#F9F7F0"/>
+  <path d="M201 222C211 194 231 181 256 181C281 181 301 194 311 222" stroke="#0B1020" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="228" cy="232" r="8" fill="#0B1020"/>
+  <circle cx="284" cy="232" r="8" fill="#0B1020"/>
+  <path d="M225 272C244 292 268 292 287 272" stroke="#0B1020" stroke-width="8" stroke-linecap="round"/>
+  <rect x="109" y="111" width="83" height="42" rx="8" fill="#D8FF36"/>
+  <text x="124" y="138" fill="#0B1020" font-family="Arial, sans-serif" font-size="15" font-weight="700">LIVE CAM</text>
+  <rect x="458" y="87" width="177" height="306" rx="18" fill="#F9F7F0"/>
+  <text x="484" y="128" fill="#0B1020" font-family="Arial, sans-serif" font-size="17" font-weight="700">Emotion read</text>
+  <text x="484" y="165" fill="#52607F" font-family="Arial, sans-serif" font-size="13">happy</text>
+  <rect x="484" y="177" width="126" height="11" rx="5.5" fill="#D9D5C9"/>
+  <rect x="484" y="177" width="110" height="11" rx="5.5" fill="#D8FF36"/>
+  <text x="484" y="220" fill="#52607F" font-family="Arial, sans-serif" font-size="13">neutral</text>
+  <rect x="484" y="232" width="126" height="11" rx="5.5" fill="#D9D5C9"/>
+  <rect x="484" y="232" width="47" height="11" rx="5.5" fill="#A897F5"/>
+  <text x="484" y="275" fill="#52607F" font-family="Arial, sans-serif" font-size="13">surprised</text>
+  <rect x="484" y="287" width="126" height="11" rx="5.5" fill="#D9D5C9"/>
+  <rect x="484" y="287" width="27" height="11" rx="5.5" fill="#F18EBD"/>
+  <text x="484" y="343" fill="#0B1020" font-family="Arial, sans-serif" font-size="14" font-weight="700">confidence 87%</text>
+</svg>

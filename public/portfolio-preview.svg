@@ -1,0 +1,60 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hero" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1020"/>
+      <stop offset="1" stop-color="#202B51"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="72" y1="390" x2="380" y2="628" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4A5C9A"/>
+      <stop offset="1" stop-color="#B7A4FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" rx="24" fill="#0B1020"/>
+  <rect width="1280" height="395" rx="24" fill="url(#hero)"/>
+  <rect y="378" width="1280" height="342" fill="#0B1020"/>
+  <text x="72" y="83" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="23" font-weight="700">V<tspan fill="#D8FF36">D</tspan></text>
+  <text x="854" y="83" fill="#D9D5C9" font-family="Arial, sans-serif" font-size="14" font-weight="700">About</text>
+  <text x="932" y="83" fill="#D9D5C9" font-family="Arial, sans-serif" font-size="14" font-weight="700">Work</text>
+  <text x="1005" y="83" fill="#D9D5C9" font-family="Arial, sans-serif" font-size="14" font-weight="700">Contact</text>
+  <rect x="1080" y="57" width="128" height="42" rx="10" fill="#D8FF36"/>
+  <text x="1110" y="83" fill="#0B1020" font-family="Arial, sans-serif" font-size="13" font-weight="700">Let's talk</text>
+  <circle cx="77" cy="143" r="5" fill="#D8FF36"/>
+  <text x="93" y="148" fill="#D9D5C9" font-family="Arial, sans-serif" font-size="12" font-weight="700">AVAILABLE FOR THOUGHTFUL WEB WORK</text>
+  <text x="72" y="220" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-5">Digital experiences</text>
+  <text x="72" y="283" fill="#D8FF36" font-family="Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-5">with intention.</text>
+  <text x="74" y="328" fill="#D9D5C9" font-family="Arial, sans-serif" font-size="16">A focused portfolio where clear interfaces and expressive motion work together.</text>
+  <rect x="74" y="351" width="150" height="43" rx="10" fill="#D8FF36"/>
+  <text x="95" y="378" fill="#0B1020" font-family="Arial, sans-serif" font-size="13" font-weight="700">View my work ↓</text>
+  <circle cx="1026" cy="232" r="139" stroke="#B7A4FF" stroke-opacity=".74"/>
+  <ellipse cx="1026" cy="232" rx="186" ry="104" transform="rotate(48 1026 232)" stroke="#F9F7F0" stroke-opacity=".32"/>
+  <rect x="930" y="136" width="190" height="190" rx="28" fill="#F9F7F0" transform="rotate(-7 930 136)"/>
+  <text x="960" y="260" fill="#0B1020" font-family="Arial, sans-serif" font-size="65" font-weight="800" letter-spacing="-8" transform="rotate(-7 960 260)">VD</text>
+  <rect x="1127" y="215" width="106" height="44" rx="3" fill="#F18EBD" transform="rotate(6 1127 215)"/>
+  <text x="1140" y="241" fill="#0B1020" font-family="Arial, sans-serif" font-size="10" font-weight="700" transform="rotate(6 1140 241)">React · motion</text>
+  <text x="72" y="448" fill="#D8FF36" font-family="Arial, sans-serif" font-size="11" font-weight="700">02 — SELECTED WORK</text>
+  <text x="72" y="484" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="31" font-weight="700" letter-spacing="-2">Projects that make the next step clear.</text>
+  <rect x="72" y="522" width="350" height="163" rx="14" fill="#151D37"/>
+  <rect x="72" y="522" width="350" height="83" rx="14" fill="url(#card1)"/>
+  <circle cx="154" cy="562" r="25" fill="#F9F7F0"/>
+  <path d="M99 598C119 557 166 558 193 598H99Z" fill="#0B1020" fill-opacity=".82"/>
+  <text x="94" y="636" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="19" font-weight="700">Art Classifier</text>
+  <rect x="94" y="652" width="57" height="16" rx="8" fill="#27355C"/>
+  <rect x="157" y="652" width="47" height="16" rx="8" fill="#27355C"/>
+  <rect x="465" y="522" width="350" height="163" rx="14" fill="#151D37"/>
+  <rect x="465" y="522" width="350" height="83" rx="14" fill="#20285B"/>
+  <circle cx="557" cy="565" r="30" fill="#F9F7F0"/>
+  <circle cx="546" cy="560" r="4" fill="#0B1020"/>
+  <circle cx="568" cy="560" r="4" fill="#0B1020"/>
+  <path d="M545 577C553 585 561 585 569 577" stroke="#0B1020" stroke-width="4" stroke-linecap="round"/>
+  <text x="487" y="636" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="19" font-weight="700">Face Emotion Detection</text>
+  <rect x="487" y="652" width="57" height="16" rx="8" fill="#27355C"/>
+  <rect x="551" y="652" width="53" height="16" rx="8" fill="#27355C"/>
+  <rect x="858" y="522" width="350" height="163" rx="14" fill="#151D37"/>
+  <rect x="858" y="522" width="350" height="83" rx="14" fill="#27355C"/>
+  <rect x="890" y="541" width="113" height="48" rx="7" fill="#D8FF36"/>
+  <rect x="1014" y="541" width="159" height="11" rx="5.5" fill="#F9F7F0" fill-opacity=".83"/>
+  <rect x="1014" y="560" width="125" height="8" rx="4" fill="#F9F7F0" fill-opacity=".36"/>
+  <text x="880" y="636" fill="#F9F7F0" font-family="Arial, sans-serif" font-size="19" font-weight="700">Personal Website</text>
+  <rect x="880" y="652" width="49" height="16" rx="8" fill="#27355C"/>
+  <rect x="936" y="652" width="36" height="16" rx="8" fill="#27355C"/>
+</svg>
