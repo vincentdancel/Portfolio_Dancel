@@ -1,0 +1,32 @@
+.scroll-velocity .parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-velocity .scroller {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.scroll-velocity .scroller > span {
+  flex-shrink: 0;
+}
+
+.scroll-velocity .parallax:focus-visible {
+  outline: 2px solid var(--teal, currentColor);
+  outline-offset: -2px;
+}
+
+@media (min-width: 768px) {
+  .scroll-velocity .scroller {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+}

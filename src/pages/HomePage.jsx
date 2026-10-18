@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Projects from '../components/Projects'
 import Services from '../components/Services'
+import TechStack from '../components/TechStack'
 import WorkExperience from '../components/WorkExperience'
 import { profile, projects } from '../data/portfolio'
 
@@ -21,6 +22,7 @@ export default function HomePage() {
         <About profile={profile} />
         <Projects projects={projects} />
         <WorkExperience />
+        <TechStack />
         <Achievements />
         <Services />
         <Contact profile={profile} />

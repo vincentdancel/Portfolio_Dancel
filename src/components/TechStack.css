@@ -1,0 +1,104 @@
+.tech-stack {
+  --tech-gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(3rem, 6vw, 5rem);
+  color: var(--paper);
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+}
+
+.tech-stack-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.tech-stack-eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--teal);
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tech-stack-heading h2 {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.tech-stack-pause {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0.6rem 0.85rem;
+  color: var(--paper-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.tech-stack-pause:hover,
+.tech-stack-pause[aria-pressed='true'] {
+  color: var(--teal);
+  border-color: currentColor;
+}
+
+.tech-stack .scroll-velocity {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.tech-stack-copy,
+.tech-stack-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tech-gap);
+}
+
+.tech-stack-copy {
+  padding-right: var(--tech-gap);
+}
+
+.tech-stack-item {
+  display: grid;
+  width: clamp(6.25rem, 10vw, 8rem);
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.tech-stack-logo {
+  width: 80px;
+  height: 80px;
+  max-width: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.tech-stack .parallax[data-reduced-motion] .scroller {
+  width: 100%;
+}
+
+.tech-stack .parallax[data-reduced-motion] .tech-stack-copy {
+  width: 100%;
+  padding-inline: 1rem;
+}
+
+.tech-stack .parallax[data-reduced-motion] .tech-stack-group {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 41.99rem) {
+  .tech-stack-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+}
