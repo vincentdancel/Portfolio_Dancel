@@ -34,7 +34,7 @@ export default function Achievements() {
         <div className="achievements-heading">
           <SectionHeading
             id="achievements-title"
-            number="04"
+            number="05"
             eyebrow="Achievements"
             title="Milestones along the way."
             copy="Competition wins, academic recognition, and the learning that keeps me moving forward."
