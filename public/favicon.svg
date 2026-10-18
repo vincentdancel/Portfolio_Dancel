@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Vince Dancel — VD</title>
+  <rect width="64" height="64" rx="14" fill="#1fa8a4" />
+  <g fill="#050505">
+    <path d="M7 17h8l5 19 5-19h8l-9 30h-8Z" />
+    <path fill-rule="evenodd" d="M35 17h9c9 0 14 5.5 14 15S53 47 44 47h-9Zm7 7v16h2c4.6 0 7-2.7 7-8s-2.4-8-7-8Z" />
+  </g>
+</svg>
