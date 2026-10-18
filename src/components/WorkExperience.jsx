@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { workExperience } from '../data/experience'
 import useReducedMotion from '../hooks/useReducedMotion'
 import SectionHeading from './SectionHeading'
+import SpotlightCard from './SpotlightCard'
 import './WorkExperience.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -129,30 +130,46 @@ export default function WorkExperience() {
                 ) : null}
               </p>
               <span className="experience-marker" aria-hidden="true" />
-              <details
+              <SpotlightCard
                 className="experience-card"
                 data-experience-card
-                aria-labelledby={`${experience.id}-title`}
-                onToggle={() => ScrollTrigger.refresh()}
+                theme="dark"
+                spotlightColor="#ffffff"
+                intensity={0.15}
+                spotlightSize={240}
+                softness={0.7}
+                shape="circle"
+                borderGlow={0.6}
+                proximity={80}
+                smoothing={0.3}
+                grain={0}
+                ambient={false}
+                flare
               >
-                <summary className="experience-card-summary">
-                  <span className="experience-number" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 id={`${experience.id}-title`}>{experience.role}</h3>
-                  {experience.company ? <p className="experience-company">{experience.company}</p> : null}
-                  <span className="experience-card-toggle">
-                    <span className="experience-show-label">View responsibilities</span>
-                    <span className="experience-hide-label">Hide responsibilities</span>
-                    <span className="experience-toggle-icon" aria-hidden="true" />
-                  </span>
-                </summary>
-                <ul className="experience-responsibilities">
-                  {experience.responsibilities.map((responsibility) => (
-                    <li key={responsibility}>{responsibility}</li>
-                  ))}
-                </ul>
-              </details>
+                <details
+                  className="experience-card-details"
+                  aria-labelledby={`${experience.id}-title`}
+                  onToggle={() => ScrollTrigger.refresh()}
+                >
+                  <summary className="experience-card-summary">
+                    <span className="experience-number" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 id={`${experience.id}-title`}>{experience.role}</h3>
+                    {experience.company ? <p className="experience-company">{experience.company}</p> : null}
+                    <span className="experience-card-toggle">
+                      <span className="experience-show-label">View responsibilities</span>
+                      <span className="experience-hide-label">Hide responsibilities</span>
+                      <span className="experience-toggle-icon" aria-hidden="true" />
+                    </span>
+                  </summary>
+                  <ul className="experience-responsibilities">
+                    {experience.responsibilities.map((responsibility) => (
+                      <li key={responsibility}>{responsibility}</li>
+                    ))}
+                  </ul>
+                </details>
+              </SpotlightCard>
             </li>
           ))}
         </ol>

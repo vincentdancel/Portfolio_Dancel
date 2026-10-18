@@ -106,9 +106,11 @@
   grid-column: 1;
   grid-row: 1;
   min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: linear-gradient(145deg, rgba(244, 243, 238, 0.045), rgba(244, 243, 238, 0.01));
+  padding: 0;
+}
+
+.experience-card-details {
+  border-radius: inherit;
 }
 
 .experience-card-summary {
@@ -126,14 +128,9 @@
   display: none;
 }
 
-.experience-card:has(.experience-card-summary:hover),
-.experience-card[open] {
-  border-color: var(--teal);
-}
-
 .experience-card-summary:focus-visible {
   outline: 2px solid var(--teal);
-  outline-offset: 4px;
+  outline-offset: -4px;
 }
 
 .experience-card-toggle {
@@ -148,11 +145,11 @@
 }
 
 .experience-hide-label,
-.experience-card[open] .experience-show-label {
+.experience-card-details[open] .experience-show-label {
   display: none;
 }
 
-.experience-card[open] .experience-hide-label {
+.experience-card-details[open] .experience-hide-label {
   display: inline;
 }
 
@@ -178,7 +175,7 @@
   transform: rotate(90deg);
 }
 
-.experience-card[open] .experience-toggle-icon::after {
+.experience-card-details[open] .experience-toggle-icon::after {
   display: none;
 }
 
