@@ -71,7 +71,7 @@ export default function Projects({ projects }) {
       const media = gsap.matchMedia()
 
       media.add('(min-width: 62rem) and (hover: hover)', () => {
-        const getDistance = () => Math.max(0, track.scrollWidth - rail.clientWidth + window.innerWidth * 0.24)
+        const getDistance = () => Math.max(0, track.scrollWidth - rail.clientWidth)
 
         const railTween = gsap.to(track, {
           x: () => -getDistance(),
@@ -79,7 +79,7 @@ export default function Projects({ projects }) {
           scrollTrigger: {
             trigger: rail,
             start: 'top top',
-            end: () => '+=' + (getDistance() + window.innerHeight),
+            end: () => '+=' + getDistance(),
             pin: true,
             scrub: 0.8,
             anticipatePin: 1,
@@ -145,10 +145,24 @@ export default function Projects({ projects }) {
         })
       })
 
-      const refresh = () => ScrollTrigger.refresh()
+      let refreshFrame
+      let active = true
+      const refresh = () => {
+        if (!active) return
+        cancelAnimationFrame(refreshFrame)
+        refreshFrame = requestAnimationFrame(() => ScrollTrigger.refresh())
+      }
+
+      const resizeObserver = new ResizeObserver(refresh)
+      resizeObserver.observe(track)
       window.addEventListener('load', refresh, { once: true })
+      document.fonts?.ready.then(refresh)
+      refresh()
 
       return () => {
+        active = false
+        cancelAnimationFrame(refreshFrame)
+        resizeObserver.disconnect()
         window.removeEventListener('load', refresh)
         media.revert()
       }
@@ -158,7 +172,7 @@ export default function Projects({ projects }) {
       context.revert()
       titleSplit?.revert()
     }
-  }, [reducedMotion])
+  }, [projects, reducedMotion])
 
   return (
     <section id="work" className="work" ref={root} aria-labelledby="work-title">

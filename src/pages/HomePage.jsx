@@ -17,10 +17,10 @@ export default function HomePage() {
       <Header />
       <main id="main-content">
         <Hero profile={profile} />
-        <Services />
-        <Projects projects={projects} />
         <About profile={profile} />
+        <Projects projects={projects} />
         <Achievements />
+        <Services />
         <Contact profile={profile} />
       </main>
       <Footer profile={profile} />

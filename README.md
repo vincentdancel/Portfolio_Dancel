@@ -2,7 +2,7 @@
 
 A responsive personal portfolio built for the Q2 Portfolio v1 brief. It introduces the developer, showcases selected work, and provides clear ways to get in touch. The app is structured with reusable React components and React Router so individual project case studies can grow beyond the landing page.
 
-> Project note: source buttons lead to verified public repositories. The interactive project previews are part of this portfolio; add independently deployed demos when they are available.
+> Project note: selected projects use the supplied repository, live demo, Figma, and downloadable-file links. Screenshots and GIFs currently use placeholders.
 
 ## Preview
 
@@ -19,7 +19,7 @@ The visual preview is a local project asset at `public/portfolio-preview.svg`. I
 - Mobile-first responsive styling
 - GSAP entrance and/or scroll-triggered motion with reduced-motion support
 
-Project-card links follow a deliberate policy: external destinations point only to public URLs that have been checked during implementation; work without an independently hosted demo uses an internal case-study route instead. This avoids presenting made-up repository or demo links.
+Selected work includes IntraVision-AI, CineRealm, Data Analytics - Excel, and the QR Bus Transportation System. Each card shows a short description, technologies, a screenshot/GIF placeholder, and the available project links. The Excel workbook link opens the supplied GitHub repository, while the QR app download links directly to its APK. To add a screenshot or GIF, set the project's `preview` path in `src/data/portfolio.js` to an asset in `public/`.
 
 ## Tech stack
 

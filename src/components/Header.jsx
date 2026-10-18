@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { CloseIcon, MenuIcon } from './Icons'
 
 const links = [
-  { href: '#services', label: 'Services' },
-  { href: '#work', label: 'Projects' },
   { href: '#about', label: 'About' },
+  { href: '#work', label: 'Projects' },
   { href: '#achievements', label: 'Achievements' },
+  { href: '#services', label: 'Services' },
 ]
 
 export default function Header() {

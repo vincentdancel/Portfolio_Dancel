@@ -545,6 +545,44 @@
   background: #1d2747;
 }
 
+.project-preview-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 18rem;
+  align-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1.25rem;
+  color: #f4f3ee;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(31, 168, 164, 0.16), transparent 70%),
+    linear-gradient(rgba(244, 243, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 243, 238, 0.035) 1px, transparent 1px),
+    #181c1c;
+  background-size: auto, 2rem 2rem, 2rem 2rem, auto;
+}
+
+.project-preview-placeholder svg {
+  margin-bottom: 0.25rem;
+  color: #43c7c2;
+}
+
+.project-preview-placeholder span {
+  color: rgba(244, 243, 238, 0.58);
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-preview-placeholder strong {
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
 .project-preview img {
   width: 100%;
   height: 100%;
@@ -606,6 +644,7 @@
   font-size: 1.65rem;
   font-weight: 720;
   letter-spacing: -0.057em;
+  overflow-wrap: anywhere;
 }
 
 .project-description {
@@ -633,6 +672,7 @@
 
 .project-links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
@@ -822,6 +862,7 @@
   font-weight: 740;
   letter-spacing: -0.08em;
   line-height: 0.89;
+  overflow-wrap: anywhere;
 }
 
 .detail-hero > div > p:last-child {
@@ -877,6 +918,17 @@
 
 .interactive-study {
   margin-top: 4.25rem;
+}
+
+.project-detail-preview {
+  margin-top: 4.25rem;
+}
+
+.project-detail-preview .project-preview {
+  max-width: 60rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
 }
 
 .study-header {

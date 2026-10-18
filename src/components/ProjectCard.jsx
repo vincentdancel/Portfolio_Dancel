@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { ArrowUpRightIcon, GithubIcon } from './Icons'
+import ProjectLinks from './ProjectLinks'
+import ProjectPreview from './ProjectPreview'
 
 export default function ProjectCard({ project }) {
   return (
@@ -9,11 +9,7 @@ export default function ProjectCard({ project }) {
         <span>{project.category}</span>
       </div>
 
-      <div className="project-preview" data-project-visual>
-        <img src={project.preview} alt={'Interface preview for ' + project.title} loading="lazy" />
-        <p>{project.outcome}</p>
-        <span className="project-preview-cross" aria-hidden="true">+</span>
-      </div>
+      <ProjectPreview project={project} />
 
       <div className="project-card-body" data-project-copy>
         <div>
@@ -26,21 +22,7 @@ export default function ProjectCard({ project }) {
               <li key={technology}>{technology}</li>
             ))}
           </ul>
-          <div className="project-links">
-            <Link className="text-link" to={'/lab/' + project.slug}>
-              View case study <ArrowUpRightIcon />
-            </Link>
-            <a
-              className="icon-link"
-              href={project.repoUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={'Open ' + project.title + ' on GitHub'}
-            >
-              <GithubIcon />
-              <span>Source</span>
-            </a>
-          </div>
+          <ProjectLinks project={project} />
         </div>
       </div>
     </article>

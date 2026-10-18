@@ -16,49 +16,81 @@ export const profile = {
 
 export const projects = [
   {
-    slug: 'art-classifier',
+    slug: 'intravision-ai',
     number: '01',
-    title: 'Art Classifier',
-    category: 'Machine learning web app',
+    title: 'IntraVision-AI',
+    category: 'AI intramurals management',
     description:
-      'An image-classification project that explores artist prediction through upload and camera-based input.',
+      'An AI-powered intramurals management and scoring system for Cor Jesu College.',
     longDescription:
-      'This project turns an image-recognition workflow into a clearer web experience: choose an image, run a prediction, and review a confidence-led result.',
-    tech: ['Python', 'Flask', 'TensorFlow'],
-    repoUrl: 'https://github.com/vincentdancel/Art_Classifier',
-    preview: '/previews/art-classifier.svg',
+      'IntraVision-AI is an intelligent intramurals management and scoring system for Cor Jesu College. It combines React, HTML, CSS, JavaScript, Python, and API integrations with Supabase services and IndexedDB for local browser storage.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'IndexedDB', 'React', 'Python', 'APIs', 'Supabase'],
+    links: [
+      { label: 'Live demo', href: 'https://intra-vision-ai.vercel.app/' },
+      { label: 'GitHub repo', href: 'https://github.com/romerJohn/IntraVision-AI', icon: 'github' },
+    ],
+    preview: null,
     accent: 'lime',
-    outcome: 'Designed around an approachable image-to-insight flow.',
+    outcome: 'Intramurals management and scoring.',
   },
   {
-    slug: 'face-emotion-detection',
+    slug: 'cinerealm',
     number: '02',
-    title: 'Face Emotion Detection',
-    category: 'Computer vision experiment',
+    title: 'CineRealm',
+    category: 'UI/UX design & prototype',
     description:
-      'A computer-vision project for exploring facial-expression recognition and confidence-based emotion signals.',
+      'A UI/UX design project presented through Figma screens and an interactive prototype.',
     longDescription:
-      'The study investigates how a detection interface can make a model’s output easier to scan: a live frame, clear labels, and confidence values with meaningful hierarchy.',
-    tech: ['Python', 'Jupyter', 'OpenCV'],
-    repoUrl: 'https://github.com/vincentdancel/Face-Emotion-Detection',
-    preview: '/previews/emotion-detection.svg',
+      'CineRealm explores interface design and prototyping in Figma. Browse the design file to inspect the screens, or open the interactive prototype to explore the experience.',
+    tech: ['Figma'],
+    links: [
+      {
+        label: 'View prototype',
+        href: 'https://www.figma.com/proto/ioyvI4rKvWujkNaj9IZz2D/CineRealm?node-id=0-1&t=6jb025m5nvCdm11k-1',
+      },
+      {
+        label: 'Figma design',
+        href: 'https://www.figma.com/design/ioyvI4rKvWujkNaj9IZz2D/CineRealm?node-id=0-1&t=6jb025m5nvCdm11k-1',
+      },
+    ],
+    preview: null,
     accent: 'lilac',
-    outcome: 'Translated model output into a readable visual summary.',
+    outcome: 'Interface design and interactive prototyping.',
   },
   {
-    slug: 'personal-website',
+    slug: 'data-analytics-excel',
     number: '03',
-    title: 'Personal Website',
-    category: 'Personal web presence',
+    title: 'Data Analytics - Excel',
+    category: 'Data analysis & dashboard',
     description:
-      'An earlier personal site built to introduce my work, interests, and approach to digital design.',
+      'An Excel data analysis project that presents information through a dashboard and clear visual summaries.',
     longDescription:
-      'A foundational portfolio project focused on personal identity, hierarchy, and a concise path from introduction to selected work.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    repoUrl: 'https://github.com/vincentdancel/Personal-Website',
-    preview: '/previews/personal-website.svg',
+      'This Microsoft Excel project brings data analysis and dashboard presentation together in a workbook. Open the linked repository to browse the project and access its downloadable files.',
+    tech: ['Microsoft Excel'],
+    links: [
+      { label: 'Workbook files', href: 'https://github.com/vincentdancel/Excel-Dashboard-Data-Analysis-', icon: 'github' },
+    ],
+    preview: null,
     accent: 'pink',
-    outcome: 'Created a compact personal platform for sharing work online.',
+    outcome: 'Data analysis and visual reporting in Excel.',
+  },
+  {
+    slug: 'qr-bus-transportation-system',
+    number: '04',
+    title: 'QR Bus Transportation System',
+    category: 'Mobile & web application',
+    description:
+      'A QR-based bus transportation system with a Flutter mobile app, a React web interface, and a Supabase backend.',
+    longDescription:
+      'The QR Bus Transportation System combines Flutter, React, and Supabase for a QR-based transportation experience across mobile and web. Visit the repository for the source code and Android APK resources.',
+    tech: ['Flutter', 'React', 'Supabase'],
+    links: [
+      { label: 'Download APK', href: 'https://media.githubusercontent.com/media/vincentdancel/QR_Bus_Transportation_System/main/QR%20Bus%20Smart.apk' },
+      { label: 'GitHub repo', href: 'https://github.com/vincentdancel/QR_Bus_Transportation_System', icon: 'github' },
+    ],
+    preview: null,
+    accent: 'teal',
+    outcome: 'QR-based transportation across mobile and web.',
   },
 ]
 
