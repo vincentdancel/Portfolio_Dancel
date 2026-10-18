@@ -2,6 +2,7 @@ import { lazy, Suspense, useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import useReducedMotion from '../hooks/useReducedMotion'
+import useNearViewport from '../hooks/useNearViewport'
 import './About.css'
 
 const Lanyard = lazy(() => import('./Lanyard'))
@@ -17,6 +18,8 @@ const focusAreas = [
 
 export default function About({ profile }) {
   const root = useRef(null)
+  const portrait = useRef(null)
+  const portraitVisible = useNearViewport(portrait)
   const reducedMotion = useReducedMotion()
 
   useLayoutEffect(() => {
@@ -99,6 +102,18 @@ export default function About({ profile }) {
     return () => context.revert()
   }, [reducedMotion])
 
+  const portraitFallback = (
+    <img
+      className="about-portrait-fallback"
+      src="/Myid.png"
+      alt="Portrait of Vince Dancel"
+      width="600"
+      height="600"
+      loading="lazy"
+      decoding="async"
+    />
+  )
+
   return (
     <section
       id="about"
@@ -133,30 +148,32 @@ export default function About({ profile }) {
             </div>
           </div>
 
-          <figure className="about-portrait" data-about-intro>
-            <Suspense fallback={<img className="about-portrait-fallback" src="/Myid.png" alt="Portrait of Vince Dancel" width="600" height="600" />}>
-              <Lanyard
-                frontImage="/Myid.png"
-                backImage="/lanyard-back.svg"
-                strapImage="/lanyard-band.svg"
-                imageFit="cover"
-                cardColor="#ffffff"
-                orientation="portrait"
-                finish="glossy"
-                cornerRadius={0.3}
-                size={0.6}
-                anchor="center"
-                strapLength={0.5}
-                strapColor="#111111"
-                strapWidth={0.65}
-                metal="silver"
-                gravity={1}
-                damping={0.5}
-                elasticity={0.5}
-                breeze={reducedMotion ? 0 : 0.5}
-                interactive
-                intro={!reducedMotion}
-              />
+          <figure className="about-portrait" ref={portrait} data-about-intro>
+            <Suspense fallback={portraitFallback}>
+              {portraitVisible ? (
+                <Lanyard
+                  frontImage="/Myid.png"
+                  backImage="/lanyard-back.svg"
+                  strapImage="/lanyard-band.svg"
+                  imageFit="cover"
+                  cardColor="#ffffff"
+                  orientation="portrait"
+                  finish="glossy"
+                  cornerRadius={0.3}
+                  size={0.6}
+                  anchor="center"
+                  strapLength={0.5}
+                  strapColor="#111111"
+                  strapWidth={0.65}
+                  metal="silver"
+                  gravity={1}
+                  damping={0.5}
+                  elasticity={0.5}
+                  breeze={reducedMotion ? 0 : 0.5}
+                  interactive
+                  intro={!reducedMotion}
+                />
+              ) : portraitFallback}
             </Suspense>
             <figcaption className="sr-only">Portrait of Vince Dancel on an interactive lanyard. Drag the card to swing it or click to see the back.</figcaption>
           </figure>

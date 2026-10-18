@@ -8,14 +8,14 @@ import useReducedMotion from '../hooks/useReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
-export default function Hero({ profile }) {
+export default function Hero({ profile, ready = true, onBackgroundReady }) {
   const root = useRef(null)
   const firstMessage = useRef(null)
   const secondMessage = useRef(null)
   const reducedMotion = useReducedMotion()
 
   useLayoutEffect(() => {
-    if (reducedMotion) return undefined
+    if (!ready || reducedMotion) return undefined
 
     let firstSplit
     let secondSplit
@@ -93,7 +93,9 @@ export default function Hero({ profile }) {
         timeline
           .addLabel('intro')
           .to(
-            firstSplit.words,
+            // Entrance moves words; scrolling moves their lines so refreshes
+            // cannot reset a word while its entrance is still playing.
+            firstSplit.lines,
             {
               yPercent: 105,
               autoAlpha: 0,
@@ -126,7 +128,7 @@ export default function Hero({ profile }) {
       firstSplit?.revert()
       secondSplit?.revert()
     }
-  }, [reducedMotion])
+  }, [reducedMotion, ready])
 
   return (
     <section className="hero" ref={root} aria-labelledby="hero-title">
@@ -145,7 +147,7 @@ export default function Hero({ profile }) {
           interactive
           clickPulse
           intro
-          quality="high"
+          quality="medium"
           mixBlendMode="screen"
           twist={0.4}
           detail={4}
@@ -153,6 +155,7 @@ export default function Hero({ profile }) {
           noiseIntensity={0.5}
           fade={0}
           lightMode={false}
+          onReady={onBackgroundReady}
           paused={reducedMotion}
         />
         <div className="shell hero-layout">

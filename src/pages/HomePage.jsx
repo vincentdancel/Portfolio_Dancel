@@ -10,7 +10,7 @@ import TechStack from '../components/TechStack'
 import WorkExperience from '../components/WorkExperience'
 import { profile, projects } from '../data/portfolio'
 
-export default function HomePage() {
+export default function HomePage({ ready = true, onBackgroundReady }) {
   return (
     <div className="portfolio-home sav1n-experience">
       <a className="skip-link" href="#main-content">
@@ -18,7 +18,7 @@ export default function HomePage() {
       </a>
       <Header />
       <main id="main-content">
-        <Hero profile={profile} />
+        <Hero profile={profile} ready={ready} onBackgroundReady={onBackgroundReady} />
         <About profile={profile} />
         <Projects projects={projects} />
         <WorkExperience />

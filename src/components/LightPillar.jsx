@@ -191,6 +191,10 @@ const QUALITY = { low: 0.35, medium: 0.5, high: 0.6 };
 const INTRO_SECONDS = 2.1;
 const PULSE_LIFE = 1.4;
 const MIN_SCALE = 0.25;
+// This is a soft, decorative background. Cap both passes in CSS pixels so
+// high-DPI and large displays do not multiply the full-screen GPU workload.
+const MAX_FIELD_PIXELS = 260_000;
+const MAX_COMPOSITE_PIXELS = 1_000_000;
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const easeOut = t => 1 - Math.pow(1 - t, 3);
@@ -259,6 +263,7 @@ const LightPillar = ({
   quality = 'high',
   resolution,
   lightMode = false,
+  onReady,
   paused = false,
   className = '',
   style
@@ -267,9 +272,11 @@ const LightPillar = ({
   const canvasRef = useRef(null);
   const wakeRef = useRef(null);
   const settingsRef = useRef(null);
+  const readyRef = useRef(onReady);
   const [generation, setGeneration] = useState(0);
   const [renderer, setRenderer] = useState('fallback');
   const reducedMotion = useReducedMotion();
+  readyRef.current = onReady;
   settingsRef.current = {
     topColor: String(topColor),
     bottomColor: String(bottomColor),
@@ -311,6 +318,7 @@ const LightPillar = ({
       canvas.getContext('webgl2', { ...contextOptions, powerPreference: 'default' });
     if (!gl) {
       console.warn('LightPillar: WebGL 2 is unavailable; using the Canvas 2D fallback.');
+      readyRef.current?.();
       return undefined;
     }
 
@@ -320,6 +328,7 @@ const LightPillar = ({
     if (!marchProgram || !compositeProgram) {
       if (marchProgram) gl.deleteProgram(marchProgram.program);
       if (compositeProgram) gl.deleteProgram(compositeProgram.program);
+      readyRef.current?.();
       return undefined;
     }
 
@@ -331,6 +340,7 @@ const LightPillar = ({
       raf = 0;
       last = 0;
       setRenderer('fallback');
+      readyRef.current?.();
     };
     const onContextRestored = () => setGeneration(value => value + 1);
     canvas.addEventListener('webglcontextlost', onContextLost);
@@ -353,6 +363,7 @@ const LightPillar = ({
       failed = true;
       setRenderer('fallback');
       console.warn(`LightPillar: ${reason}; using the Canvas 2D fallback.`);
+      readyRef.current?.();
       return false;
     };
     const sizeTarget = (width, height) => {
@@ -410,7 +421,7 @@ const LightPillar = ({
       spin: 0,
       lean: 0,
       shift: 0,
-      governor: 1,
+      governor: 0.8,
       slow: 0,
       quick: 0
     };
@@ -428,7 +439,8 @@ const LightPillar = ({
     const render = () => {
       if (failed || contextLost || gl.isContextLost()) return false;
       const s = settingsRef.current;
-      const scale = Math.max(MIN_SCALE, s.scale * state.governor);
+      const pixelScale = Math.sqrt(MAX_FIELD_PIXELS / (view.width * view.height));
+      const scale = Math.min(Math.max(MIN_SCALE, s.scale * state.governor), pixelScale);
       const fieldWidth = Math.max(1, Math.round(view.width * scale));
       const fieldHeight = Math.max(1, Math.round(view.height * scale));
       if (!sizeTarget(fieldWidth, fieldHeight)) return false;
@@ -496,6 +508,7 @@ const LightPillar = ({
         if (gl.getError() !== gl.NO_ERROR) return fail('the first frame could not be rendered');
         rendered = true;
         setRenderer('webgl');
+        readyRef.current?.();
       }
       return true;
     };
@@ -572,7 +585,12 @@ const LightPillar = ({
     const resize = () => {
       const width = Math.max(1, container.clientWidth);
       const height = Math.max(1, container.clientHeight);
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const ratio = Math.min(
+        window.devicePixelRatio || 1,
+        1,
+        Math.sqrt(MAX_COMPOSITE_PIXELS / (width * height)),
+      );
+      if (view.width === width && view.height === height && view.ratio === ratio) return;
       view.width = width;
       view.height = height;
       view.ratio = ratio;

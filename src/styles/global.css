@@ -11,8 +11,13 @@
 }
 
 html {
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+}
+
+html.site-is-loading body {
+  overflow: hidden;
 }
 
 body {
