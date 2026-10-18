@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="96" viewBox="0 0 640 96">
+  <rect width="640" height="96" fill="#111111" />
+  <path d="M0 6H640M0 90H640" stroke="#626262" stroke-width="2" stroke-dasharray="6 6" />
+  <text x="32" y="59" fill="#f4f3ee" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="5">VINCE DANCEL</text>
+  <circle cx="349" cy="48" r="6" fill="#66c9c2" />
+  <text x="384" y="57" fill="#66c9c2" font-family="Arial, Helvetica, sans-serif" font-size="23" letter-spacing="3">DESIGN &amp; CODE</text>
+</svg>

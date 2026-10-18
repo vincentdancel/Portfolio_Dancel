@@ -1,9 +1,10 @@
-import { useLayoutEffect, useRef } from 'react'
+import { lazy, Suspense, useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import useReducedMotion from '../hooks/useReducedMotion'
-import { ArrowUpRightIcon } from './Icons'
 import './About.css'
+
+const Lanyard = lazy(() => import('./Lanyard'))
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -120,20 +121,45 @@ export default function About({ profile }) {
               <br />
               <span>A developer&apos;s mind.</span>
             </h2>
-          </div>
 
-          <div className="about-details" data-about-intro>
-            <p className="about-specialty">{profile.role}</p>
-            <div className="about-biography">
-              {profile.about.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+            <div className="about-details">
+              <p className="about-specialty">{profile.role}</p>
+              <div className="about-biography">
+                {profile.about.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
             </div>
-
-            <a className="about-contact-link" href="#contact">
-              Let&apos;s build something <ArrowUpRightIcon size={19} />
-            </a>
           </div>
+
+          <figure className="about-portrait" data-about-intro>
+            <Suspense fallback={<img className="about-portrait-fallback" src="/Myid.png" alt="Portrait of Vince Dancel" width="600" height="600" />}>
+              <Lanyard
+                frontImage="/Myid.png"
+                backImage="/lanyard-back.svg"
+                strapImage="/lanyard-band.svg"
+                imageFit="cover"
+                cardColor="#ffffff"
+                orientation="portrait"
+                finish="glossy"
+                cornerRadius={0.3}
+                size={0.6}
+                anchor="center"
+                strapLength={0.5}
+                strapColor="#111111"
+                strapWidth={0.65}
+                metal="silver"
+                gravity={1}
+                damping={0.5}
+                elasticity={0.5}
+                breeze={reducedMotion ? 0 : 0.5}
+                interactive
+                intro={!reducedMotion}
+              />
+            </Suspense>
+            <figcaption className="sr-only">Portrait of Vince Dancel on an interactive lanyard. Drag the card to swing it or click to see the back.</figcaption>
+          </figure>
         </div>
 
         <aside className="about-focus" data-about-list aria-labelledby="about-focus-title">

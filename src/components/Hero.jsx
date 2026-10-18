@@ -70,7 +70,6 @@ export default function Hero({ profile }) {
         .from('[data-hero-prelude]', { y: 16, autoAlpha: 0, duration: 0.65 })
         .from(firstSplit.words, { yPercent: 108, duration: 1, stagger: 0.035 }, '-=0.26')
         .from('[data-hero-detail]', { y: 20, autoAlpha: 0, duration: 0.7, stagger: 0.1 }, '-=0.5')
-        .from('[data-hero-orbit]', { scale: 0.82, autoAlpha: 0, duration: 0.9 }, '-=0.75')
 
       const media = gsap.matchMedia()
 
@@ -114,7 +113,6 @@ export default function Hero({ profile }) {
             0.28,
           )
           .to('[data-hero-detail]', { yPercent: 35, autoAlpha: 0.2, ease: 'none' }, 0)
-          .to('[data-hero-orbit]', { scale: 1.38, yPercent: -18, ease: 'none' }, 0)
           .addLabel('handoff')
           .to('[data-hero-status]', { autoAlpha: 0, ease: 'none' }, 0.72)
           .addLabel('outro')
@@ -160,7 +158,6 @@ export default function Hero({ profile }) {
         <div className="shell hero-layout">
           <div className="hero-prelude" data-hero-prelude>
             <p>Independent designer &amp; developer</p>
-            <p>Philippines / available worldwide</p>
           </div>
 
           <div className="hero-main">
@@ -184,18 +181,6 @@ export default function Hero({ profile }) {
                 </a>
               </div>
             </div>
-          </div>
-
-          <div className="hero-orbit" data-hero-orbit>
-            <img
-              className="hero-portrait"
-              src="/Myid.png"
-              alt="Portrait of Vince Dancel"
-              width="600"
-              height="600"
-              decoding="async"
-              fetchPriority="high"
-            />
           </div>
 
           <div className="hero-side-label" data-hero-detail>

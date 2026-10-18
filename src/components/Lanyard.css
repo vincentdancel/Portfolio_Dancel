@@ -1,0 +1,29 @@
+.lanyard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lanyard-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lanyard-fallback {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  width: auto;
+  max-width: 72%;
+  height: 60%;
+  aspect-ratio: 1.6 / 2.25;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  transform: translateX(-50%);
+}
+
+.lanyard:has(> .lanyard-canvas) > .lanyard-fallback {
+  display: none;
+}
