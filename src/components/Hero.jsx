@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import { ArrowDownIcon, ArrowUpRightIcon } from './Icons'
+import { ArrowDownIcon } from './Icons'
 import LightPillar from './LightPillar'
 import useReducedMotion from '../hooks/useReducedMotion'
 
@@ -181,9 +181,6 @@ export default function Hero({ profile }) {
               <div className="hero-actions">
                 <a className="hero-text-link" href="#work">
                   Selected work <ArrowDownIcon />
-                </a>
-                <a className="hero-text-link hero-text-link--quiet" href={'mailto:' + profile.email}>
-                  Start a conversation <ArrowUpRightIcon />
                 </a>
               </div>
             </div>

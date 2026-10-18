@@ -3572,13 +3572,23 @@ body {
 
 .sav1n-experience .contact {
   position: relative;
+  isolation: isolate;
   min-height: 100svh;
-  padding: clamp(4.5rem, 10vw, 9rem) 0 clamp(3rem, 7vw, 6rem);
+  padding: clamp(10rem, 20vw, 18rem) 0 clamp(3rem, 7vw, 6rem);
+  overflow: hidden;
   color: var(--paper);
   background: var(--ink);
 }
 
+.contact-laser {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
 .sav1n-experience .contact-panel {
+  z-index: 1;
   min-height: min(74svh, 48rem);
   padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5.5rem);
   color: var(--ink);
@@ -4034,7 +4044,7 @@ body {
   }
 
   .sav1n-experience .contact {
-    padding-top: 3rem;
+    padding-top: 10rem;
   }
 
   .sav1n-experience .contact-bottom {

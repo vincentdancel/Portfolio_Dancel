@@ -133,13 +133,13 @@ export default function Header() {
           )}
           <a
             className="nav-cta"
-            href="mailto:vincentdancel@g.cjc.edu.ph"
+            href={onHomePage ? '#contact' : '/#contact'}
             onClick={closeMenu}
           >
             Let&apos;s talk
           </a>
         </nav>
-        <a className="header-cta" href="mailto:vincentdancel@g.cjc.edu.ph">
+        <a className="header-cta" href={onHomePage ? '#contact' : '/#contact'}>
           Let&apos;s talk
         </a>
         {onHomePage ? (

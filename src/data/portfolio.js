@@ -3,7 +3,7 @@ export const profile = {
   shortName: 'Vince Dancel',
   role: 'Web Developer & UI/UX Designer',
   location: 'Philippines',
-  email: 'vincentdancel@g.cjc.edu.ph',
+  email: 'vincentdancel692@gmail.com',
   github: 'https://github.com/vincentdancel',
   instagram: 'https://instagram.com/beanssss_d',
   intro:
