@@ -1616,19 +1616,6 @@ body {
   display: none;
 }
 
-.hero-grid-overlay {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  opacity: 0.38;
-  background-image:
-    linear-gradient(rgba(241, 240, 234, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(241, 240, 234, 0.06) 1px, transparent 1px);
-  background-position: center top;
-  background-size: clamp(3.75rem, 8vw, 7.5rem) clamp(3.75rem, 8vw, 7.5rem);
-  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.28) 71%, transparent 100%);
-}
-
 .hero-layout {
   position: relative;
   display: grid;
@@ -1838,29 +1825,6 @@ body {
   width: 1px;
   height: 3.6rem;
   background: currentColor;
-}
-
-.hero-wire {
-  position: absolute;
-  z-index: -1;
-  right: -4%;
-  bottom: -0.8rem;
-  left: -4%;
-  width: 108%;
-  height: auto;
-  overflow: visible;
-  opacity: 0.92;
-}
-
-.hero-wire path {
-  stroke: var(--lime);
-  stroke-width: 1.4;
-  vector-effect: non-scaling-stroke;
-}
-
-.hero-wire path + path {
-  stroke: rgba(241, 240, 234, 0.42);
-  stroke-width: 1;
 }
 
 .hero-status {
@@ -2625,13 +2589,6 @@ body {
     font-size: 0.52rem;
   }
 
-  .hero-wire {
-    right: -38%;
-    left: -38%;
-    width: 176%;
-    bottom: 0.65rem;
-  }
-
   .portfolio-home .section-heading h2 {
     font-size: clamp(2.4rem, 12.7vw, 3.5rem);
   }
@@ -2926,45 +2883,29 @@ body {
   min-height: 100svh;
   height: 100svh;
   overflow: hidden;
+  isolation: isolate;
   background:
     radial-gradient(circle at 72% 47%, rgba(31, 168, 164, 0.2), transparent 23rem),
     var(--ink);
 }
 
-.hero-grid-overlay {
+.hero-light-pillar {
   z-index: 0;
-  opacity: 0.28;
-  background-image:
-    linear-gradient(rgba(244, 243, 238, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(244, 243, 238, 0.08) 1px, transparent 1px);
-  background-size: clamp(3.8rem, 8vw, 7rem) clamp(3.8rem, 8vw, 7rem);
-  mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.42) 67%, transparent);
 }
 
-.hero-halo {
+.hero-stage::after {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  width: min(70vw, 64rem);
-  aspect-ratio: 1;
-  border: 1px solid rgba(244, 243, 238, 0.09);
-  border-radius: 50%;
-  transform: translate(-50%, -46%);
-}
-
-.hero-halo::before,
-.hero-halo::after {
-  position: absolute;
-  inset: 12%;
+  inset: 0;
+  z-index: 1;
   content: "";
-  border: 1px solid rgba(31, 168, 164, 0.35);
-  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.62), rgba(5, 5, 5, 0.24) 56%, transparent),
+    linear-gradient(0deg, rgba(5, 5, 5, 0.7), transparent 32%);
 }
 
-.hero-halo::after {
-  inset: 26%;
-  border-color: rgba(244, 243, 238, 0.13);
+.hero-stage > .hero-status {
+  z-index: 2;
 }
 
 .hero-layout {
@@ -3039,6 +2980,10 @@ body {
   color: var(--paper);
 }
 
+.hero-side-label {
+  color: rgba(244, 243, 238, 0.43);
+}
+
 .hero-orbit {
   position: absolute;
   z-index: 1;
@@ -3097,23 +3042,6 @@ body {
   font-size: 0.48rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-}
-
-.hero-side-label {
-  color: rgba(244, 243, 238, 0.43);
-}
-
-.hero-wire {
-  z-index: 1;
-  opacity: 0.82;
-}
-
-.hero-wire path {
-  stroke: var(--teal);
-}
-
-.hero-wire path + path {
-  stroke: rgba(244, 243, 238, 0.36);
 }
 
 .hero-status {
@@ -4022,18 +3950,6 @@ body {
 
   .hero-prelude p:last-child {
     display: none;
-  }
-
-  .hero-halo {
-    width: 32rem;
-    transform: translate(-42%, -49%);
-  }
-
-  .hero-wire {
-    right: -44%;
-    bottom: 1.8rem;
-    left: -44%;
-    width: 188%;
   }
 
   .hero-status {

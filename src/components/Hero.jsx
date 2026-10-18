@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { ArrowDownIcon, ArrowUpRightIcon } from './Icons'
+import LightPillar from './LightPillar'
 import useReducedMotion from '../hooks/useReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
@@ -88,7 +89,6 @@ export default function Hero({ profile }) {
           )
           .to('[data-hero-detail]', { yPercent: 35, autoAlpha: 0.2, ease: 'none' }, 0)
           .to('[data-hero-orbit]', { scale: 1.38, yPercent: -18, ease: 'none' }, 0)
-          .to('[data-hero-grid]', { y: () => -window.innerHeight * 0.4, ease: 'none' }, 0)
           .addLabel('handoff')
           .to('[data-hero-status]', { autoAlpha: 0, ease: 'none' }, 0.72)
           .addLabel('outro')
@@ -107,9 +107,30 @@ export default function Hero({ profile }) {
   return (
     <section className="hero" ref={root} aria-labelledby="hero-title">
       <div className="hero-stage">
-        <div className="hero-grid-overlay" data-hero-grid aria-hidden="true" />
-        <div className="hero-halo" aria-hidden="true" />
-
+        <LightPillar
+          className="hero-light-pillar"
+          topColor="#00A89E"
+          bottomColor="#00A89E"
+          intensity={1}
+          glowAmount={0.002}
+          bloom={0.5}
+          pillarWidth={3}
+          pillarHeight={0.4}
+          pillarRotation={25}
+          rotationSpeed={0.3}
+          interactive
+          clickPulse
+          intro
+          quality="high"
+          mixBlendMode="screen"
+          twist={0.4}
+          detail={4}
+          flow={1}
+          noiseIntensity={0.5}
+          fade={0}
+          lightMode={false}
+          paused={reducedMotion}
+        />
         <div className="shell hero-layout">
           <div className="hero-prelude" data-hero-prelude>
             <p>Independent designer &amp; developer</p>
@@ -153,17 +174,6 @@ export default function Hero({ profile }) {
             <i aria-hidden="true" />
           </div>
         </div>
-
-        <svg
-          className="hero-wire"
-          viewBox="0 0 1600 360"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path d="M-52 292C166 202 247 113 442 144C642 176 698 280 866 219C1020 163 1071 58 1283 93C1410 114 1508 183 1650 47" />
-          <path d="M-78 334C184 218 364 330 530 278C753 208 796 104 966 135C1154 170 1215 330 1446 195C1522 151 1583 92 1668 31" />
-        </svg>
 
         <div className="hero-status" data-hero-status>
           <span className="status-dot" aria-hidden="true" />
