@@ -43,7 +43,7 @@ export default function Contact({ profile }) {
         <div data-contact-reveal>
           <SectionHeading
             id="contact-title"
-            number="04"
+            number="05"
             eyebrow="Contact"
             title="Have an idea that deserves a little more momentum?"
           />

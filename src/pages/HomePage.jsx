@@ -1,4 +1,5 @@
 import About from '../components/About'
+import Achievements from '../components/Achievements'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -19,6 +20,7 @@ export default function HomePage() {
         <Services />
         <Projects projects={projects} />
         <About profile={profile} />
+        <Achievements />
         <Contact profile={profile} />
       </main>
       <Footer profile={profile} />

@@ -37,6 +37,32 @@ export default function Hero({ profile }) {
         aria: 'hidden',
       })
 
+      const headlineStyles = getComputedStyle(firstMessage.current)
+      const headlineColor = headlineStyles.color
+      const highlightColor = headlineStyles.getPropertyValue('--hero-word-accent').trim()
+
+      for (const split of [firstSplit, secondSplit]) {
+        const firstHighlight = split.words.findIndex(word => word.closest('.hero-title-accent'))
+        const start = Math.max(0, firstHighlight)
+        const words = [...split.words.slice(start), ...split.words.slice(0, start)]
+
+        gsap.set(words, { color: headlineColor })
+        gsap.set(words[0], { color: highlightColor })
+
+        const colors = gsap.timeline({
+          repeat: -1,
+          delay: 1.4,
+          defaults: { duration: 0.65, ease: 'sine.inOut' },
+        })
+
+        words.forEach((word, index) => {
+          const nextWord = words[(index + 1) % words.length]
+          colors.to([word, nextWord], {
+            color: targetIndex => targetIndex === 0 ? headlineColor : highlightColor,
+          }, '+=0.35')
+        })
+      }
+
       gsap.set(secondMessage.current, { autoAlpha: 1 })
       gsap.set(secondSplit.words, { yPercent: -108, autoAlpha: 0 })
 
@@ -143,10 +169,10 @@ export default function Hero({ profile }) {
             </h1>
             <div className="hero-title-stack" aria-hidden="true">
               <p className="hero-display hero-display--primary" ref={firstMessage}>
-                Interfaces that <span>move people.</span>
+                Interfaces that <span className="hero-title-accent">move people.</span>
               </p>
               <p className="hero-display hero-display--secondary" ref={secondMessage}>
-                Useful ideas, <span>made tangible.</span>
+                Useful ideas, <span className="hero-title-accent">made tangible.</span>
               </p>
             </div>
 
@@ -163,10 +189,16 @@ export default function Hero({ profile }) {
             </div>
           </div>
 
-          <div className="hero-orbit" data-hero-orbit aria-hidden="true">
-            <span>VD</span>
-            <i>01</i>
-            <p>Design / code / motion</p>
+          <div className="hero-orbit" data-hero-orbit>
+            <img
+              className="hero-portrait"
+              src="/Myid.png"
+              alt="Portrait of Vince Dancel"
+              width="600"
+              height="600"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
 
           <div className="hero-side-label" data-hero-detail>

@@ -2929,6 +2929,7 @@ body {
 }
 
 .hero-title-stack {
+  --hero-word-accent: #55b8ff;
   position: relative;
   min-height: clamp(9.1rem, 19vw, 17.5rem);
 }
@@ -2944,9 +2945,9 @@ body {
   line-height: 0.83;
 }
 
-.sav1n-experience .hero-display span {
+.sav1n-experience .hero-display .hero-title-accent {
   display: block;
-  color: var(--teal);
+  color: var(--hero-word-accent);
 }
 
 .hero-display--secondary {
@@ -2996,7 +2997,7 @@ body {
   color: var(--paper);
   border: 1px solid rgba(244, 243, 238, 0.55);
   border-radius: 50%;
-  transform: translateY(-50%) rotate(-9deg);
+  transform: translateY(-50%);
 }
 
 .hero-orbit::before,
@@ -3006,42 +3007,34 @@ body {
   content: "";
   border: 1px dashed rgba(244, 243, 238, 0.31);
   border-radius: 50%;
+  animation: hero-orbit-spin 24s linear infinite;
+  pointer-events: none;
 }
 
 .hero-orbit::after {
+  z-index: 2;
   inset: 1.4rem;
   border-style: solid;
-  border-color: rgba(31, 168, 164, 0.73);
+  border-color: rgba(31, 168, 164, 0.73) transparent;
+  animation-duration: 18s;
+  animation-direction: reverse;
 }
 
-.hero-orbit > span {
-  position: relative;
+@keyframes hero-orbit-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.hero-portrait {
+  position: absolute;
   z-index: 1;
-  color: var(--teal);
-  font-size: clamp(2.5rem, 5vw, 4.4rem);
-  font-weight: 900;
-  letter-spacing: -0.16em;
-}
-
-.hero-orbit i {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  color: rgba(244, 243, 238, 0.76);
-  font-family: "Courier New", monospace;
-  font-size: 0.58rem;
-  font-style: normal;
-}
-
-.hero-orbit p {
-  position: absolute;
-  bottom: 1.45rem;
-  margin: 0;
-  color: rgba(244, 243, 238, 0.62);
-  font-family: "Courier New", monospace;
-  font-size: 0.48rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  inset: 1.4rem;
+  width: calc(100% - 2.8rem);
+  height: calc(100% - 2.8rem);
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .hero-status {
@@ -3744,15 +3737,9 @@ body {
 
   .hero-orbit {
     top: 19%;
-    right: -1.25rem;
+    right: 0;
     width: clamp(7.8rem, 27vw, 11rem);
-    transform: rotate(-9deg);
-    opacity: 0.8;
-  }
-
-  .hero-orbit p,
-  .hero-orbit i {
-    display: none;
+    transform: none;
   }
 
   .hero-bottom-row {
@@ -3973,6 +3960,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-orbit::before,
+  .hero-orbit::after {
+    animation: none;
+  }
+
   .services-orb-image {
     transition: none;
   }

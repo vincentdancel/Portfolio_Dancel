@@ -6,6 +6,7 @@ const links = [
   { href: '#services', label: 'Services' },
   { href: '#work', label: 'Projects' },
   { href: '#about', label: 'About' },
+  { href: '#achievements', label: 'Achievements' },
 ]
 
 export default function Header() {
