@@ -1,9 +1,11 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import useReducedMotion from '../hooks/useReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const orbImages = ['/elevate.jpg', '/design.jpg', '/develop.jpg']
 
 const services = [
   {
@@ -30,15 +32,29 @@ const services = [
 
 export default function Services() {
   const root = useRef(null)
+  const [activeImage, setActiveImage] = useState(0)
   const reducedMotion = useReducedMotion()
 
   useLayoutEffect(() => {
-    if (reducedMotion) return undefined
-
     const context = gsap.context(() => {
       const media = gsap.matchMedia()
 
-      media.add('(min-width: 62rem) and (hover: hover)', () => {
+      media.add({ desktop: '(min-width: 62rem) and (hover: hover)', all: 'all' }, ({ conditions }) => {
+        const animatedDesktop = conditions.desktop && !reducedMotion
+        const updateImage = ({ progress }) => {
+          setActiveImage(Math.min(orbImages.length - 1, Math.floor(progress * orbImages.length)))
+        }
+
+        ScrollTrigger.create({
+          trigger: root.current,
+          start: animatedDesktop ? 'top top' : 'top center',
+          end: animatedDesktop ? 'bottom bottom' : 'bottom center',
+          onUpdate: updateImage,
+          onRefresh: updateImage,
+        })
+
+        if (!animatedDesktop) return
+
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: root.current,
@@ -60,18 +76,20 @@ export default function Services() {
           .to('[data-services-eyebrow]', { autoAlpha: 0.25, yPercent: -45, ease: 'none' }, 0)
       })
 
-      gsap.from('[data-service-card]', {
-        y: 44,
-        autoAlpha: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.09,
-        scrollTrigger: {
-          trigger: '[data-services-cards]',
-          start: 'top 82%',
-          once: true,
-        },
-      })
+      if (!reducedMotion) {
+        gsap.from('[data-service-card]', {
+          y: 44,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.09,
+          scrollTrigger: {
+            trigger: '[data-services-cards]',
+            start: 'top 82%',
+            once: true,
+          },
+        })
+      }
 
       return () => media.revert()
     }, root)
@@ -84,9 +102,15 @@ export default function Services() {
       <div className="services-stage">
         <div className="services-noise" aria-hidden="true" />
         <div className="services-orb" data-services-orb aria-hidden="true">
-          <span>VD</span>
-          <i />
-          <i />
+          {orbImages.map((src, index) => (
+            <img
+              key={src}
+              className={`services-orb-image${index === activeImage ? ' is-active' : ''}`}
+              src={src}
+              alt=""
+              decoding="async"
+            />
+          ))}
         </div>
 
         <div className="shell services-layout">

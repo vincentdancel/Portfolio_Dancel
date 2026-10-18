@@ -3094,63 +3094,26 @@ body {
   position: absolute;
   top: 34%;
   right: 8%;
-  display: grid;
   width: min(48vw, 42rem);
   aspect-ratio: 1;
-  place-items: center;
-  color: rgba(244, 243, 238, 0.94);
-  background:
-    radial-gradient(circle at 36% 31%, rgba(255, 255, 255, 0.18), transparent 0 17%),
-    radial-gradient(circle at 62% 71%, rgba(0, 0, 0, 0.21), transparent 0 28%),
-    linear-gradient(135deg, #168985, var(--teal) 57%, #0a605f);
-  border-radius: 49% 51% 46% 54% / 58% 47% 53% 42%;
-  box-shadow: inset -2rem -2rem 5rem rgba(0, 0, 0, 0.18), 0 1.8rem 5rem rgba(0, 0, 0, 0.31);
-  transform: rotate(-16deg);
-}
-
-.services-orb::before,
-.services-orb::after {
-  position: absolute;
-  content: "";
-  border: 1px solid rgba(244, 243, 238, 0.35);
-  border-radius: inherit;
-}
-
-.services-orb::before {
-  inset: 7%;
-}
-
-.services-orb::after {
-  inset: 17%;
-  border-style: dashed;
-}
-
-.services-orb span {
-  position: relative;
-  z-index: 1;
-  color: var(--ink);
-  font-size: clamp(5rem, 13vw, 12rem);
-  font-weight: 900;
-  letter-spacing: -0.17em;
-  transform: rotate(16deg);
-}
-
-.services-orb i {
-  position: absolute;
-  width: 0.92rem;
-  aspect-ratio: 1;
+  overflow: hidden;
   background: var(--ink);
   border-radius: 50%;
+  box-shadow: 0 1.8rem 5rem rgba(0, 0, 0, 0.31);
 }
 
-.services-orb i:first-of-type {
-  top: 34%;
-  left: 34%;
+.services-orb-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.services-orb i:last-of-type {
-  top: 34%;
-  right: 29%;
+.services-orb-image.is-active {
+  opacity: 1;
 }
 
 .services-layout {
@@ -4010,6 +3973,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .services-orb-image {
+    transition: none;
+  }
+
   .sav1n-experience .site-nav,
   .sav1n-experience .site-nav a,
   .sav1n-experience .site-nav a span,
