@@ -1,5 +1,11 @@
 export const achievements = [
   {
+    src: '/certificates/openxai.jpg',
+    alt: 'Certificate of recognition awarded to Vincent Ric H. Dancel for participating in the OpenxAI Mini App Workshop and Competition on December 1, 2025',
+    title: 'OpenxAI Mini App Workshop & Competition',
+    subtitle: 'OpenxAI · December 2025',
+  },
+  {
     src: '/certificates/aa4dc837-451e-4d27-a64d-f4778d0c02f2.jpg',
     alt: 'Certificate awarded to Vincent Dancel for first place in the Debugging Competition at IT Week 2024',
     title: '1st Place · Debugging Competition',
