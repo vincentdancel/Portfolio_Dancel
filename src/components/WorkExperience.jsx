@@ -109,7 +109,7 @@ export default function WorkExperience() {
         <div className="experience-heading">
           <SectionHeading
             id="experience-title"
-            number="04"
+            number="03"
             eyebrow="Work Experience"
             title="Experience along the way."
             copy="From sales and teaching to geospatial data and client support, every role has shaped how I work."

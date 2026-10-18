@@ -21,21 +21,44 @@ export default function Projects({ projects }) {
       return undefined
     }
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        video.play().catch(() => {})
-      } else {
-        video.pause()
-      }
-    })
+    let pauseTimeout
 
-    observer.observe(root.current)
-
-    return () => {
-      observer.disconnect()
+    const pauseVideo = () => {
+      window.clearTimeout(pauseTimeout)
       video.pause()
     }
-  }, [reducedMotion])
+
+    const playWhileScrolling = ({ isActive }) => {
+      if (!isActive || document.hidden) {
+        pauseVideo()
+        return
+      }
+
+      window.clearTimeout(pauseTimeout)
+      if (video.paused) video.play().catch(() => {})
+      pauseTimeout = window.setTimeout(pauseVideo, 120)
+    }
+
+    const playbackTrigger = ScrollTrigger.create({
+      trigger: root.current,
+      start: 'top bottom',
+      end: 'bottom top',
+      onUpdate: playWhileScrolling,
+      onToggle: ({ isActive }) => {
+        if (!isActive) pauseVideo()
+      },
+      onRefresh: pauseVideo,
+    })
+
+    pauseVideo()
+    document.addEventListener('visibilitychange', pauseVideo)
+
+    return () => {
+      playbackTrigger.kill()
+      document.removeEventListener('visibilitychange', pauseVideo)
+      pauseVideo()
+    }
+  }, [projects, reducedMotion])
 
   useLayoutEffect(() => {
     if (reducedMotion) return undefined

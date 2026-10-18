@@ -3109,7 +3109,7 @@ body {
   position: sticky;
   top: 0;
   min-height: 100svh;
-  height: 100svh;
+  height: auto;
   overflow: hidden;
   background: var(--ink);
 }
@@ -3166,6 +3166,7 @@ body {
   z-index: 1;
   display: grid;
   min-height: inherit;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   padding-top: clamp(9rem, 17vh, 12.5rem);
   padding-bottom: clamp(2rem, 5vw, 4.25rem);
@@ -3291,6 +3292,7 @@ body {
 
 .sav1n-experience .work {
   position: relative;
+  z-index: 3;
   isolation: isolate;
   padding: 0;
   color: var(--ink);
@@ -4020,7 +4022,7 @@ body {
   }
 
   .service-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .service-cards li {
@@ -4029,7 +4031,12 @@ body {
   }
 
   .service-cards h3 {
+    max-width: none;
     margin-top: 1.9rem;
+  }
+
+  .service-cards p {
+    max-width: none;
   }
 
   .sav1n-experience .focus-card ul {

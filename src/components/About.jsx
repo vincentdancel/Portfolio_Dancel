@@ -2,15 +2,16 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import useReducedMotion from '../hooks/useReducedMotion'
-import SectionHeading from './SectionHeading'
+import { ArrowUpRightIcon } from './Icons'
+import './About.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const focusAreas = [
-  'Interface design',
-  'React foundations',
-  'Motion systems',
-  'Machine learning',
+  { name: 'Interface design', detail: 'Clear, considered, easy to use.' },
+  { name: 'React development', detail: 'Ideas turned into working interfaces.' },
+  { name: 'Motion design', detail: 'Small details that make things flow.' },
+  { name: 'Machine learning', detail: 'Exploring what intelligent tools can do.' },
 ]
 
 export default function About({ profile }) {
@@ -21,10 +22,46 @@ export default function About({ profile }) {
     if (reducedMotion) return undefined
 
     const context = gsap.context(() => {
+      const getPinStart = () => root.current.offsetHeight > window.innerHeight
+        ? 'bottom bottom'
+        : 'top top'
+
+      gsap.fromTo('[data-about-background]', {
+        y: () => Math.min(window.innerHeight * 0.28, 240),
+        '--about-curve': '14%',
+      }, {
+        y: 0,
+        '--about-curve': '0%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'top 18%',
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
+      })
+
+      gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: getPinStart,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+        .fromTo('[data-about-glow]', { yPercent: 24, xPercent: 8 }, {
+          yPercent: -28,
+          xPercent: -8,
+        }, 0)
+
       gsap.from('[data-about-intro]', {
-        y: 52,
+        y: 30,
         autoAlpha: 0,
-        duration: 0.9,
+        duration: 0.8,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: root.current,
@@ -34,7 +71,7 @@ export default function About({ profile }) {
       })
 
       gsap.from('[data-about-item]', {
-        x: 28,
+        y: 18,
         autoAlpha: 0,
         duration: 0.65,
         ease: 'power3.out',
@@ -45,49 +82,75 @@ export default function About({ profile }) {
           once: true,
         },
       })
+
+      // Let Projects cover About without adding extra scroll space between them.
+      ScrollTrigger.create({
+        trigger: root.current,
+        start: getPinStart,
+        endTrigger: document.getElementById('work'),
+        end: 'top top',
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      })
     }, root)
 
     return () => context.revert()
   }, [reducedMotion])
 
   return (
-    <section id="about" className="about section-space" ref={root} aria-labelledby="about-title">
-      <div className="shell">
-        <SectionHeading
-          id="about-title"
-          number="03"
-          eyebrow="A little about me"
-          title="Thoughtful systems, expressive details, and a reason behind every motion."
-        />
-
-        <div className="about-layout">
-          <div className="about-statement" data-about-intro>
-            <p className="about-role">{profile.role}</p>
-            <p>
-              I make digital work that stays clear at speed. The aim is a visual language that
-              earns attention, then makes the next step feel natural.
+    <section
+      id="about"
+      className="about about--refined section-space"
+      ref={root}
+      aria-labelledby="about-title"
+    >
+      <div className="about-background" data-about-background aria-hidden="true">
+        <div className="about-background-glow" data-about-glow />
+      </div>
+      <div className="shell about-content">
+        <div className="about-grid">
+          <div className="about-introduction" data-about-intro>
+            <p className="section-kicker">
+              <span>01</span>
+              <span>A little about me</span>
             </p>
+            <h2 id="about-title" className="about-title">
+              A designer&apos;s eye.
+              <br />
+              <span>A developer&apos;s mind.</span>
+            </h2>
           </div>
 
-          <div className="about-copy" data-about-intro>
-            {profile.about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-
-          <aside className="focus-card" data-about-list aria-label="Current focus areas">
-            <p className="card-label">Current focus</p>
-            <ul>
-              {focusAreas.map((area, index) => (
-                <li key={area} data-about-item>
-                  <span>0{index + 1}</span>
-                  <strong>{area}</strong>
-                  <i aria-hidden="true">↗</i>
-                </li>
+          <div className="about-details" data-about-intro>
+            <p className="about-specialty">{profile.role}</p>
+            <div className="about-biography">
+              {profile.about.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
-            </ul>
-          </aside>
+            </div>
+
+            <a className="about-contact-link" href="#contact">
+              Let&apos;s build something <ArrowUpRightIcon size={19} />
+            </a>
+          </div>
         </div>
+
+        <aside className="about-focus" data-about-list aria-labelledby="about-focus-title">
+          <div className="about-focus-heading">
+            <h3 id="about-focus-title">What I&apos;m exploring</h3>
+            <span>Always learning. Always making.</span>
+          </div>
+          <ul className="about-focus-list">
+            {focusAreas.map(({ name, detail }, index) => (
+              <li key={name} data-about-item>
+                <span className="about-focus-number" aria-hidden="true">0{index + 1}</span>
+                <h4>{name}</h4>
+                <p>{detail}</p>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
     </section>
   )

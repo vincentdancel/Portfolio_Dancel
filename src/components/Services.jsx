@@ -116,7 +116,7 @@ export default function Services() {
         <div className="shell services-layout">
           <header className="services-heading">
             <p className="services-eyebrow" data-services-eyebrow>
-              <span>01</span>
+              <span>05</span>
               What I make
             </p>
             <h2 id="services-title">

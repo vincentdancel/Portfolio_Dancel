@@ -1,0 +1,206 @@
+.sav1n-experience .about.about--refined {
+  isolation: isolate;
+  overflow: clip;
+  padding-block: clamp(5rem, 8vw, 8rem);
+  border-radius: 0;
+  background: var(--ink);
+}
+
+.about--refined .about-background {
+  --about-curve: 0%;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-top: 1px solid rgba(102, 201, 194, 0.28);
+  border-radius: 50% 50% 0 0 / var(--about-curve) var(--about-curve) 0 0;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(31, 168, 164, 0.13), transparent 55%),
+    linear-gradient(180deg, #0a1717, var(--ink) 85%);
+}
+
+.about--refined .about-background-glow {
+  position: absolute;
+  right: -10%;
+  bottom: -45%;
+  width: clamp(28rem, 75vw, 75rem);
+  aspect-ratio: 1;
+  background: radial-gradient(ellipse, rgba(31, 168, 164, 0.18), transparent 65%);
+}
+
+.about--refined .about-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about--refined .about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.about--refined .about-title {
+  margin: 1.75rem 0 0;
+  color: var(--paper);
+  font-size: clamp(2.5rem, 4.6vw, 4.4rem);
+  font-weight: 650;
+  letter-spacing: -0.065em;
+  line-height: 1.08;
+}
+
+.about--refined .about-title > span {
+  color: #66c9c2;
+}
+
+.about--refined .about-specialty {
+  color: #66c9c2;
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.about--refined .about-biography {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 35rem;
+  margin-top: 1.75rem;
+  color: rgba(244, 243, 238, 0.68);
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  line-height: 1.8;
+}
+
+.about--refined .about-contact-link {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-top: 1.65rem;
+  color: var(--paper);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--teal);
+  transition: color 180ms ease;
+}
+
+.about--refined .about-contact-link svg {
+  color: #66c9c2;
+  transition: transform 180ms ease;
+}
+
+.about--refined .about-contact-link:hover {
+  color: #66c9c2;
+}
+
+.about--refined .about-contact-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.about--refined .about-contact-link:focus-visible {
+  outline-color: #66c9c2;
+}
+
+.about--refined .about-focus {
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(244, 243, 238, 0.16);
+}
+
+.about--refined .about-focus-heading {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.about--refined .about-focus-heading h3 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about--refined .about-focus-heading > span {
+  color: rgba(244, 243, 238, 0.5);
+  font-size: 0.75rem;
+}
+
+.about--refined .about-focus-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 1.75rem;
+}
+
+.about--refined .about-focus-list li {
+  min-width: 0;
+}
+
+.about--refined .about-focus-number {
+  color: #66c9c2;
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+}
+
+.about--refined .about-focus-list h4 {
+  margin: 0.7rem 0 0;
+  color: var(--paper);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.about--refined .about-focus-list p {
+  max-width: 26ch;
+  margin-top: 0.45rem;
+  color: rgba(244, 243, 238, 0.56);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 61.99rem) {
+  .about--refined .about-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .about--refined .about-title {
+    font-size: clamp(2.2rem, 4.7vw, 3rem);
+  }
+
+  .about--refined .about-focus-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 2rem;
+  }
+}
+
+@media (max-width: 41.99rem) {
+  .about--refined .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .about--refined .about-title {
+    margin-top: 1.35rem;
+    font-size: clamp(1.9rem, 7.6vw, 3rem);
+  }
+
+  .about--refined .about-biography {
+    margin-top: 1.4rem;
+  }
+
+  .about--refined .about-focus-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .about--refined .about-focus-list {
+    gap: 1.75rem 1.25rem;
+  }
+}
