@@ -3239,6 +3239,7 @@ body {
 
 .sav1n-experience .work {
   position: relative;
+  isolation: isolate;
   padding: 0;
   color: var(--ink);
   background: var(--paper);
@@ -3248,7 +3249,37 @@ body {
   display: none;
 }
 
+.work-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.work-background-media {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.work-background-media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgba(244, 243, 238, 0.7);
+}
+
+.work-background-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .work-intro {
+  position: relative;
+  z-index: 1;
   padding-top: clamp(6rem, 13vw, 11.5rem);
   padding-bottom: clamp(3.5rem, 8vw, 7rem);
 }
@@ -3284,10 +3315,11 @@ body {
 
 .project-rail {
   position: relative;
+  z-index: 1;
   min-height: 100svh;
   overflow: hidden;
   color: var(--paper);
-  background: var(--paper);
+  background: transparent;
 }
 
 .project-rail::before {

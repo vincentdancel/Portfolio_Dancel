@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
@@ -10,7 +10,32 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export default function Projects({ projects }) {
   const root = useRef(null)
+  const backgroundVideo = useRef(null)
   const reducedMotion = useReducedMotion()
+
+  useEffect(() => {
+    const video = backgroundVideo.current
+
+    if (reducedMotion) {
+      video.pause()
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+      }
+    })
+
+    observer.observe(root.current)
+
+    return () => {
+      observer.disconnect()
+      video.pause()
+    }
+  }, [reducedMotion])
 
   useLayoutEffect(() => {
     if (reducedMotion) return undefined
@@ -137,6 +162,21 @@ export default function Projects({ projects }) {
 
   return (
     <section id="work" className="work" ref={root} aria-labelledby="work-title">
+      <div className="work-background" aria-hidden="true">
+        <div className="work-background-media">
+          <video
+            ref={backgroundVideo}
+            className="work-background-video"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            tabIndex={-1}
+          >
+            <source src="/Projects/projectsvid.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
       <div className="shell work-intro" data-work-title>
         <div className="work-heading">
           <SectionHeading
