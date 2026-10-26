@@ -22,6 +22,7 @@ A personal portfolio for **Vincent Ric H. Dancel**, a web developer and UI/UX de
 | CineRealm | Interface design and interactive prototype. | Figma |
 | Data Analytics - Excel | Data analysis workbook with dashboard and visual reporting. | Microsoft Excel |
 | QR Bus Transportation System | QR-based transportation system across mobile and web. | Flutter, React, Supabase |
+| ARChemistry | Chemistry-focused augmented reality application. | Unity |
 
 Project descriptions, screenshots, and outbound links are maintained in [src/data/portfolio.js](./src/data/portfolio.js).
 

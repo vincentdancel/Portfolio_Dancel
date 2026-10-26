@@ -36,44 +36,48 @@ export default function Services() {
   const reducedMotion = useReducedMotion()
 
   useLayoutEffect(() => {
+    if (reducedMotion) {
+      setActiveImage(0)
+      return undefined
+    }
+
     const context = gsap.context(() => {
       const media = gsap.matchMedia()
 
       media.add({ desktop: '(min-width: 62rem) and (hover: hover)', all: 'all' }, ({ conditions }) => {
-        const animatedDesktop = conditions.desktop && !reducedMotion
-        const updateImage = ({ progress }) => {
-          setActiveImage(Math.min(orbImages.length - 1, Math.floor(progress * orbImages.length)))
-        }
-
-        ScrollTrigger.create({
-          trigger: root.current,
-          start: animatedDesktop ? 'top top' : 'top center',
-          end: animatedDesktop ? 'bottom bottom' : 'bottom center',
-          onUpdate: updateImage,
-          onRefresh: updateImage,
-        })
-
-        if (!animatedDesktop) return
-
+        const animatedDesktop = conditions.desktop
+        const imageProgress = { value: 0 }
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: root.current,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.9,
+            start: animatedDesktop ? 'top top' : 'top bottom',
+            end: animatedDesktop ? 'bottom bottom' : 'bottom top',
+            scrub: 1.4,
             invalidateOnRefresh: true,
           },
         })
 
+        // Image changes follow the smoothed timeline, including on touch screens.
+        timeline.fromTo(imageProgress, { value: 0 }, {
+          value: 1,
+          duration: 1,
+          ease: 'none',
+          onUpdate: () => {
+            setActiveImage(Math.min(orbImages.length - 1, Math.floor(imageProgress.value * orbImages.length)))
+          },
+        }, 0)
+
+        if (!animatedDesktop) return
+
         timeline
           .fromTo(
             '[data-services-orb]',
-            { scale: 0.7, yPercent: 0 },
-            { scale: 1.4, yPercent: -18, ease: 'none' },
+            { scale: 0.9, yPercent: 0 },
+            { scale: 1.15, yPercent: -8, duration: 1, ease: 'none' },
             0,
           )
-          .to('[data-services-marquee]', { xPercent: -14, ease: 'none' }, 0)
-          .to('[data-services-eyebrow]', { autoAlpha: 0.25, yPercent: -45, ease: 'none' }, 0)
+          .to('[data-services-marquee]', { xPercent: -8, duration: 1, ease: 'none' }, 0)
+          .to('[data-services-eyebrow]', { autoAlpha: 0.5, yPercent: -20, duration: 1, ease: 'none' }, 0)
       })
 
       if (!reducedMotion) {

@@ -2975,7 +2975,7 @@ body {
 }
 
 .hero-title-stack {
-  --hero-word-accent: #55b8ff;
+  --hero-word-accent: var(--teal);
   position: relative;
   min-height: clamp(9.1rem, 19vw, 17.5rem);
 }
@@ -3042,7 +3042,7 @@ body {
 
 .services {
   position: relative;
-  min-height: 165svh;
+  min-height: 260svh;
   color: var(--paper);
   background: var(--ink);
 }
@@ -3096,7 +3096,7 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.8s ease;
 }
 
 .services-orb-image.is-active {

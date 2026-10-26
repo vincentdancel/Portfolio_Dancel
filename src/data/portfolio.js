@@ -92,6 +92,24 @@ export const projects = [
     accent: 'teal',
     outcome: 'QR-based transportation across mobile and web.',
   },
+  {
+    slug: 'archemistry',
+    number: '05',
+    title: 'ARChemistry',
+    category: 'Augmented reality application',
+    description:
+      'A chemistry-focused augmented reality application built with Unity.',
+    longDescription:
+      'ARChemistry brings chemistry into augmented reality through an application built with Unity. Visit the repository for the source code, or browse the Android APK builds.',
+    tech: ['Unity'],
+    links: [
+      { label: 'APK downloads', href: 'https://github.com/romerJohn/AR-CHEMISTRY-MIXTURE-SEPARATION/tree/main/Builds' },
+      { label: 'GitHub repo', href: 'https://github.com/romerJohn/AR-CHEMISTRY-MIXTURE-SEPARATION', icon: 'github' },
+    ],
+    preview: '/Projects/ARChemistry.png',
+    accent: 'teal',
+    outcome: 'Chemistry in augmented reality.',
+  },
 ]
 
 export const findProject = (slug) =>
