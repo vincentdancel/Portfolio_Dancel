@@ -1192,6 +1192,12 @@ const FlexCarousel = ({
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
     const intersectionObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !visible && introState.done && focus.target === 0 && focus.t < 0.01) {
+        // Replay the entrance without recreating textures or resetting the selected card.
+        setRevealed(false);
+        beginIntro(settingsRef.current, metrics(settingsRef.current));
+        dirty = true;
+      }
       visible = entry.isIntersecting;
       start();
     });

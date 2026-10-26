@@ -28,7 +28,8 @@ export default function WorkExperience() {
         scrollTrigger: {
           trigger: '.experience-heading',
           start: 'top 85%',
-          once: true,
+          end: 'bottom top',
+          toggleActions: 'restart none restart none',
         },
       })
 
@@ -62,7 +63,8 @@ export default function WorkExperience() {
             scrollTrigger: {
               trigger: item,
               start: 'top 85%',
-              toggleActions: 'play none none none',
+              end: 'bottom top',
+              toggleActions: 'restart none restart none',
             },
           })
             .from(marker, {

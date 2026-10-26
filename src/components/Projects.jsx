@@ -87,7 +87,8 @@ export default function Projects({ projects }) {
         scrollTrigger: {
           trigger: title,
           start: 'top 76%',
-          once: true,
+          end: 'bottom top',
+          toggleActions: 'restart none restart none',
         },
       })
 
@@ -154,18 +155,18 @@ export default function Projects({ projects }) {
       })
 
       media.add('(max-width: 61.99rem), (hover: none)', () => {
-        gsap.from(cards, {
+        cards.forEach((card) => gsap.from(card, {
           y: 48,
           autoAlpha: 0,
           duration: 0.75,
           ease: 'power3.out',
-          stagger: 0.12,
           scrollTrigger: {
-            trigger: root.current.querySelector('[data-project-track]'),
+            trigger: card,
             start: 'top 82%',
-            once: true,
+            end: 'bottom top',
+            toggleActions: 'restart none restart none',
           },
-        })
+        }))
       })
 
       let refreshFrame

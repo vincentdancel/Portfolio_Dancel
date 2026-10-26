@@ -25,18 +25,18 @@ export default function Contact({ profile }) {
     if (reducedMotion) return undefined
 
     const context = gsap.context(() => {
-      gsap.from('[data-contact-reveal]', {
+      gsap.utils.toArray('[data-contact-reveal]').forEach((element) => gsap.from(element, {
         y: 42,
         autoAlpha: 0,
         duration: 0.9,
         ease: 'power4.out',
-        stagger: 0.12,
         scrollTrigger: {
-          trigger: root.current,
+          trigger: element,
           start: 'top 72%',
-          once: true,
+          end: 'bottom top',
+          toggleActions: 'restart none restart none',
         },
-      })
+      }))
     }, root)
 
     return () => context.revert()

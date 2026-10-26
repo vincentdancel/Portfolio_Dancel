@@ -80,20 +80,20 @@ export default function Services() {
           .to('[data-services-eyebrow]', { autoAlpha: 0.5, yPercent: -20, duration: 1, ease: 'none' }, 0)
       })
 
-      if (!reducedMotion) {
-        gsap.from('[data-service-card]', {
+      gsap.utils.toArray('[data-service-card]').forEach((card) => {
+        gsap.from(card, {
           y: 44,
           autoAlpha: 0,
           duration: 0.8,
           ease: 'power3.out',
-          stagger: 0.09,
           scrollTrigger: {
-            trigger: '[data-services-cards]',
+            trigger: card,
             start: 'top 82%',
-            once: true,
+            end: 'bottom top',
+            toggleActions: 'restart none restart none',
           },
         })
-      }
+      })
 
       return () => media.revert()
     }, root)

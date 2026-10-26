@@ -66,12 +66,22 @@ export default function Hero({ profile, ready = true, onBackgroundReady }) {
       gsap.set(secondMessage.current, { autoAlpha: 1 })
       gsap.set(secondSplit.words, { yPercent: -108, autoAlpha: 0 })
 
-      gsap.timeline({ defaults: { ease: 'power3.out' } })
+      const entrance = gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('[data-hero-prelude]', { y: 16, autoAlpha: 0, duration: 0.65 })
         .from(firstSplit.words, { yPercent: 108, duration: 1, stagger: 0.035 }, '-=0.26')
         .from('[data-hero-detail]', { y: 20, autoAlpha: 0, duration: 0.7, stagger: 0.1 }, '-=0.5')
 
       const media = gsap.matchMedia()
+
+      // Desktop headlines already replay through their scroll-linked timeline.
+      media.add('(max-width: 61.99rem), (hover: none)', () => {
+        ScrollTrigger.create({
+          trigger: firstMessage.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          onEnterBack: () => entrance.restart(),
+        })
+      })
 
       media.add('(min-width: 62rem) and (hover: hover)', () => {
         const timeline = gsap.timeline({

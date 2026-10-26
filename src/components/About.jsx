@@ -61,31 +61,31 @@ export default function About({ profile }) {
           xPercent: -8,
         }, 0)
 
-      gsap.from('[data-about-intro]', {
+      gsap.utils.toArray('[data-about-intro]').forEach((element) => gsap.from(element, {
         y: 30,
         autoAlpha: 0,
         duration: 0.8,
-        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: root.current,
+          trigger: element,
           start: 'top 68%',
-          once: true,
+          end: 'bottom top',
+          toggleActions: 'restart none restart none',
         },
-      })
+      }))
 
-      gsap.from('[data-about-item]', {
+      gsap.utils.toArray('[data-about-item]').forEach((element) => gsap.from(element, {
         y: 18,
         autoAlpha: 0,
         duration: 0.65,
         ease: 'power3.out',
-        stagger: 0.1,
         scrollTrigger: {
-          trigger: '[data-about-list]',
+          trigger: element,
           start: 'top 78%',
-          once: true,
+          end: 'bottom top',
+          toggleActions: 'restart none restart none',
         },
-      })
+      }))
 
       // Let Projects cover About without adding extra scroll space between them.
       ScrollTrigger.create({
