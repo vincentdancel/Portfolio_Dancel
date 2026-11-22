@@ -112,6 +112,7 @@ export default function Services() {
               className={`services-orb-image${index === activeImage ? ' is-active' : ''}`}
               src={src}
               alt=""
+              loading="lazy"
               decoding="async"
             />
           ))}

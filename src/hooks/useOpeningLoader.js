@@ -1,33 +1,23 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function useOpeningLoader(waitForBackground) {
-  const [loading, setLoading] = useState(() => !!document.getElementById('site-loader'))
-  const [backgroundReady, setBackgroundReady] = useState(false)
-  const startedAt = useRef(performance.now())
-  const onBackgroundReady = useCallback(() => setBackgroundReady(true), [])
+export default function useOpeningLoader(enabled = true) {
+  const [loading, setLoading] = useState(() => enabled && !!document.getElementById('site-loader'))
 
   useEffect(() => {
-    if (!loading || (waitForBackground && !backgroundReady)) return undefined
+    if (!loading) return undefined
 
     let active = true
-    let timer
-    const image = new Image()
-    image.src = '/light-pillar-fallback.webp'
-
-    Promise.all([
-      document.fonts?.ready,
-      waitForBackground ? image.decode().catch(() => {}) : undefined,
-    ]).then(() => {
+    let frame = 0
+    Promise.resolve(document.fonts?.ready).then(() => {
       if (!active) return
-      // Keep the loading state legible on fast connections, without a fake percentage.
-      timer = window.setTimeout(() => setLoading(false), Math.max(0, 900 - (performance.now() - startedAt.current)))
+      frame = requestAnimationFrame(() => setLoading(false))
     })
 
     return () => {
       active = false
-      window.clearTimeout(timer)
+      cancelAnimationFrame(frame)
     }
-  }, [loading, waitForBackground, backgroundReady])
+  }, [loading])
 
   useEffect(() => {
     if (loading) return undefined
@@ -42,5 +32,5 @@ export default function useOpeningLoader(waitForBackground) {
     return () => window.clearTimeout(timer)
   }, [loading])
 
-  return { loading, onBackgroundReady }
+  return loading
 }

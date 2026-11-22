@@ -1,18 +1,39 @@
-import { useLayoutEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { ArrowDownIcon } from './Icons'
-import LightPillar from './LightPillar'
 import useReducedMotion from '../hooks/useReducedMotion'
+
+const LightPillar = lazy(() => import('./LightPillar'))
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
-export default function Hero({ profile, ready = true, onBackgroundReady }) {
+export default function Hero({ profile, ready = true }) {
   const root = useRef(null)
   const firstMessage = useRef(null)
   const secondMessage = useRef(null)
   const reducedMotion = useReducedMotion()
+  const [backgroundEnabled, setBackgroundEnabled] = useState(false)
+
+  useEffect(() => {
+    if (reducedMotion) return undefined
+
+    let timeout = 0
+    let idleCallback = null
+    const enableBackground = () => setBackgroundEnabled(true)
+
+    if ('requestIdleCallback' in window) {
+      idleCallback = window.requestIdleCallback(enableBackground, { timeout: 1200 })
+    } else {
+      timeout = window.setTimeout(enableBackground, 350)
+    }
+
+    return () => {
+      if (idleCallback !== null) window.cancelIdleCallback?.(idleCallback)
+      window.clearTimeout(timeout)
+    }
+  }, [reducedMotion])
 
   useLayoutEffect(() => {
     if (!ready || reducedMotion) return undefined
@@ -143,31 +164,34 @@ export default function Hero({ profile, ready = true, onBackgroundReady }) {
   return (
     <section className="hero" ref={root} aria-labelledby="hero-title">
       <div className="hero-stage">
-        <LightPillar
-          className="hero-light-pillar"
-          topColor="#00A89E"
-          bottomColor="#00A89E"
-          intensity={1}
-          glowAmount={0.002}
-          bloom={0.5}
-          pillarWidth={3}
-          pillarHeight={0.4}
-          pillarRotation={25}
-          rotationSpeed={0.3}
-          interactive
-          clickPulse
-          intro
-          quality="medium"
-          mixBlendMode="screen"
-          twist={0.4}
-          detail={4}
-          flow={1}
-          noiseIntensity={0.5}
-          fade={0}
-          lightMode={false}
-          onReady={onBackgroundReady}
-          paused={reducedMotion}
-        />
+        {backgroundEnabled ? (
+          <Suspense fallback={<div className="hero-light-pillar hero-light-pillar-poster" aria-hidden="true" />}>
+            <LightPillar
+              className="hero-light-pillar"
+              topColor="#00A89E"
+              bottomColor="#00A89E"
+              intensity={1}
+              glowAmount={0.002}
+              bloom={0.5}
+              pillarWidth={3}
+              pillarHeight={0.4}
+              pillarRotation={25}
+              rotationSpeed={0.3}
+              interactive
+              clickPulse
+              intro
+              quality="low"
+              mixBlendMode="screen"
+              twist={0.4}
+              detail={3}
+              flow={1}
+              noiseIntensity={0.5}
+              fade={0}
+              lightMode={false}
+              paused={reducedMotion}
+            />
+          </Suspense>
+        ) : <div className="hero-light-pillar hero-light-pillar-poster" aria-hidden="true" />}
         <div className="shell hero-layout">
           <div className="hero-prelude" data-hero-prelude>
             <p>Independent designer &amp; developer</p>

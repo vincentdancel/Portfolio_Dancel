@@ -2939,6 +2939,20 @@ body {
   mask-image: linear-gradient(90deg, transparent, #000 25%);
 }
 
+.hero-stage .hero-light-pillar-poster {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 75%;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(0, 168, 158, 0.32), rgba(0, 168, 158, 0.32)),
+    url('/light-pillar-fallback.webp') center / cover no-repeat;
+  background-blend-mode: color;
+  opacity: 0.55;
+}
+
 .hero-stage::after {
   position: absolute;
   inset: 0;

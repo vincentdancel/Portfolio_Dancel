@@ -722,6 +722,7 @@ const Lanyard = ({
   breeze = 0.5,
   interactive = true,
   intro = true,
+  flipOnMount = false,
   className = '',
   style
 }) => {
@@ -749,7 +750,8 @@ const Lanyard = ({
     elasticity,
     breeze,
     interactive,
-    intro
+    intro,
+    flipOnMount
   };
 
   useEffect(() => {
@@ -879,6 +881,8 @@ const Lanyard = ({
     let placed = false;
     let hovering = false;
     let press = null;
+    let flipBackTimer = 0;
+    let autoFlipTimer = 0;
     let imageToken = 0;
     const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
@@ -1187,11 +1191,24 @@ const Lanyard = ({
       body.angular.addScaledVector(up, FLIP_SPIN * direction);
     };
 
+    const flipBack = () => {
+      flipBackTimer = 0;
+      if (!alive || sim.turn === 0) return;
+      const body = sim.body;
+      const up = scratch.a.set(0, 1, 0).applyQuaternion(body.quaternion);
+      const direction = sim.turn > 0 ? -1 : 1;
+      sim.turn = 0;
+      body.angular.addScaledVector(up, FLIP_SPIN * direction);
+      start();
+    };
+
     const onPointerDown = event => {
       if (!settingsRef.current.interactive || event.button > 0) return;
       toPointer(event);
       const hit = pickCard();
       if (!hit) return;
+      window.clearTimeout(flipBackTimer);
+      flipBackTimer = 0;
       sim.grab = {
         local: hit.point.clone().sub(sim.body.position).applyQuaternion(sim.body.quaternion.clone().invert()),
         rotation: sim.body.quaternion.clone(),
@@ -1225,6 +1242,8 @@ const Lanyard = ({
       sim.grab = null;
       if (press && event.type === 'pointerup' && performance.now() - press.time < 450) flip(press.point);
       press = null;
+      window.clearTimeout(flipBackTimer);
+      flipBackTimer = sim.turn !== 0 ? window.setTimeout(flipBack, 1800) : 0;
       canvas.releasePointerCapture?.(event.pointerId);
       setCursor(hovering && event.pointerType !== 'touch' ? 'grab' : '');
       start();
@@ -1266,10 +1285,23 @@ const Lanyard = ({
 
     applyRef.current = apply;
     resize();
+    if (settingsRef.current.flipOnMount && !reducedMotion) {
+      autoFlipTimer = window.setTimeout(() => {
+        if (!alive) return;
+        const body = sim.body;
+        const up = scratch.a.set(0, 1, 0).applyQuaternion(body.quaternion);
+        sim.turn = Math.PI;
+        body.angular.addScaledVector(up, FLIP_SPIN);
+        start();
+        flipBackTimer = window.setTimeout(flipBack, 1200);
+      }, 700);
+    }
 
     return () => {
       alive = false;
       cancelAnimationFrame(raf);
+      window.clearTimeout(autoFlipTimer);
+      window.clearTimeout(flipBackTimer);
       applyRef.current = null;
       resizeObserver.disconnect();
       intersectionObserver.disconnect();

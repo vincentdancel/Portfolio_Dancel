@@ -1,5 +1,12 @@
 export const achievements = [
   {
+    src: '/certificates/previews/infosess-graphic-design-attendance.jpg',
+    href: '/certificates/CERT_ATTENDANCE-InfoSes-GraphicDesign.pdf',
+    alt: 'Certificate of participation awarded to Vincent Ric Heruella Dancel for attending the Online Information Session on AI and Prompt Engineering, hosted by DICT Davao del Norte on November 6, 2026',
+    title: 'AI & Prompt Engineering Information Session',
+    subtitle: 'DICT Davao del Norte · November 2026',
+  },
+  {
     src: '/certificates/openxai.jpg',
     alt: 'Certificate of recognition awarded to Vincent Ric H. Dancel for participating in the OpenxAI Mini App Workshop and Competition on December 1, 2025',
     title: 'OpenxAI Mini App Workshop & Competition',

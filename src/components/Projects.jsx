@@ -208,7 +208,7 @@ export default function Projects({ projects }) {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             tabIndex={-1}
           >
             <source src="/Projects/projectsvid.mp4" type="video/mp4" />

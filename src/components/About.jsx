@@ -30,22 +30,6 @@ export default function About({ profile }) {
         ? 'bottom bottom'
         : 'top top'
 
-      gsap.fromTo('[data-about-background]', {
-        y: () => Math.min(window.innerHeight * 0.28, 240),
-        '--about-curve': '14%',
-      }, {
-        y: 0,
-        '--about-curve': '0%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top bottom',
-          end: 'top 18%',
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      })
-
       gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
@@ -60,6 +44,20 @@ export default function About({ profile }) {
           yPercent: -28,
           xPercent: -8,
         }, 0)
+
+      gsap.fromTo('[data-about-text]', {
+        x: () => -Math.min(window.innerWidth * 0.24, 280),
+      }, {
+        x: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'top 35%',
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
+      })
 
       gsap.utils.toArray('[data-about-intro]').forEach((element) => gsap.from(element, {
         y: 30,
@@ -126,7 +124,7 @@ export default function About({ profile }) {
       </div>
       <div className="shell about-content">
         <div className="about-grid">
-          <div className="about-introduction" data-about-intro>
+          <div className="about-introduction" data-about-text>
             <p className="section-kicker">
               <span>01</span>
               <span>A little about me</span>
@@ -169,13 +167,14 @@ export default function About({ profile }) {
                   gravity={1}
                   damping={0.5}
                   elasticity={0.5}
-                  breeze={reducedMotion ? 0 : 0.5}
-                  interactive
-                  intro={!reducedMotion}
+                  breeze={0}
+                  interactive={false}
+                  intro={false}
+                  flipOnMount
                 />
               ) : portraitFallback}
             </Suspense>
-            <figcaption className="sr-only">Portrait of Vince Dancel on an interactive lanyard. Drag the card to swing it or click to see the back.</figcaption>
+            <figcaption className="sr-only">Portrait of Vince Dancel on an ID lanyard. The card briefly flips to its back, then returns to the front.</figcaption>
           </figure>
         </div>
 
