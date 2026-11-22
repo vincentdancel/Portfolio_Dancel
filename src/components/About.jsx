@@ -168,7 +168,7 @@ export default function About({ profile }) {
                   damping={0.5}
                   elasticity={0.5}
                   breeze={0}
-                  interactive={false}
+                  interactive
                   intro={false}
                   flipOnMount
                 />
